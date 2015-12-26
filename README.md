@@ -1,34 +1,32 @@
-# Cylon.js For Neurosky Mindwave Mobile
+# Cylon.js For Neurosky powered Mindflex
 
 Cylon.js (http://cylonjs.com) is a JavaScript framework for robotics, physical computing, and the Internet of Things (IoT).
 
-This repository contains the Cylon.js adaptor/driver for the Neurosky Mindwave Mobile EEG (http://store.neurosky.com/products/mindwave-mobile).
+This repository contains the Cylon.js adaptor/driver for the Neurosky powered Mindflex, augmented with BT serial output as illustrated here http://www.instructables.com/id/Mindflex-EEG-with-raw-data-over-Bluetooth/.
+This repository is a fork of the cylon-neurosky module. which supports only the Mindwave. Compared to the Mindwave, the Mindflex starts in mode 0x00, meaning it's on baud 9600 and doesn't output raw wave data. 
+This fork add 3 features:
+- Switch the Mindflex from mode 0x00 to mode 0x02, i.e. baud 57600 with raw wave data output.
+- Packet checksum support, i.e. compute the checksum and compare it with the one received from the Mindflex.
+- Improve buffer unalligned data managment, i.e. retain the partial data until a complete packet is received.
 
-Want to use Ruby on robots? Check out our sister project Artoo (http://artoo.io)
+## Credits
 
-Want to use the Go programming language to power your robots? Check out our
-sister project Gobot (http://gobot.io).
-
-[![Build Status](https://secure.travis-ci.org/hybridgroup/cylon-neurosky.png?branch=master)](http://travis-ci.org/hybridgroup/cylon-neurosky) [![Code Climate](https://codeclimate.com/github/hybridgroup/cylon-neurosky/badges/gpa.svg)](https://codeclimate.com/github/hybridgroup/cylon-neurosky) [![Test Coverage](https://codeclimate.com/github/hybridgroup/cylon-neurosky/badges/coverage.svg)](https://codeclimate.com/github/hybridgroup/cylon-neurosky)
-
-## How to Install
-
-    $ npm install cylon cylon-neurosky
+   All the credits goes to the Hybrid Group for creating and mantaining Cylon.js and the cylon-neurosky module. 
 
 ## How to Use
 
-This example displays the Attention and Meditation data reading sent by the Mindwave Headset:
+This example displays the Attention and Meditation data reading sent by the Mindflex Headset:
 
 ```javascript
 var Cylon = require('cylon');
 
 Cylon.robot({
   connections: {
-    neurosky: { adaptor: 'neurosky', port: '/dev/rfcomm0' }
+    neurosky: { adaptor: 'mindflex', port: '/dev/rfcomm0' }
   },
 
   devices: {
-    headset: { driver: 'neurosky' }
+    headset: { driver: 'mindflex' }
   },
 
   work: function(my) {
@@ -69,25 +67,3 @@ Connect to the Mindwave using this command (substituting the actual address of y
 ### Windows
 
 You should be able to pair your Mindwave using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as `COM3`.
-
-## Documentation
-
-We're busy adding documentation to [cylonjs.com](http://cylonjs.com). Please check there as we continue to work on Cylon.js.
-
-Thank you!
-
-## Contributing
-
-For our contribution guidelines, please go to [https://github.com/hybridgroup/cylon/blob/master/CONTRIBUTING.md
-](https://github.com/hybridgroup/cylon/blob/master/CONTRIBUTING.md
-).
-
-## Release History
-
-For the release history, please go to [https://github.com/hybridgroup/cylon-neurosky/blob/master/RELEASES.md
-](https://github.com/hybridgroup/cylon-neurosky/blob/master/RELEASES.md
-).
-
-## License
-
-Copyright (c) 2013-2015 The Hybrid Group. Licensed under the Apache 2.0 license.
