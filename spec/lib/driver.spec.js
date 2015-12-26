@@ -4,7 +4,7 @@ var Driver = lib("driver");
 
 var Cylon = require("cylon");
 
-describe("Cylon.Drivers.Neurosky", function() {
+describe("Cylon.Drivers.Mindflex", function() {
   var driver;
 
   beforeEach(function() {

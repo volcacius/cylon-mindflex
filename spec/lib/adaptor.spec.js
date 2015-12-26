@@ -5,7 +5,7 @@ var serialport = require("serialport"),
 
 var Adaptor = lib("adaptor");
 
-describe("Cylon.Adaptors.Neurosky", function() {
+describe("Cylon.Adaptors.Mindflex", function() {
   var adaptor;
 
   beforeEach(function() {
